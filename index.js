@@ -8,13 +8,13 @@ express()
   .use(express.static(path.join(__dirname, 'public')))
   .use(bodyParser.urlencoded({ extended: true }))
   .use(cookieParser())
-  .set('views', path.join(__dirname, 'views'))
-  .set('view engine', 'ejs')
-  .get('/', (req, res) => res.render('pages/index'))
+  .get('/', (req, res) => {
+    res.status(200).send('This will be an hidden i-frame');
+    res.end();
+  })
   .post('/', (req, res) => {
-    console.log('Got body:', req.body);
     res.cookie('token', req.body.token, { maxAge: 900000, httpOnly: true });
-    res.status(200).send('hello i got your token here and set in a cooke named "token": ' + req.body.token);
+    res.status(200).send(`Cookie monster ate your posted "token": ${req.body.token}`);
     res.end();
   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`));
