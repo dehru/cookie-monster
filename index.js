@@ -9,12 +9,12 @@ express()
   .use(bodyParser.urlencoded({ extended: true }))
   .use(cookieParser())
   .get('/', (req, res) => {
-    res.status(200).send('This will be an hidden i-frame');
+    res.status(200).send('HEROKU - This will be an hidden i-frame');
     res.end();
   })
   .post('/', (req, res) => {
     res.cookie('token', req.body.token, { maxAge: 900000, httpOnly: true });
-    res.status(200).send(`Cookie monster ate your posted "token": ${req.body.token}`);
+    res.status(200).send(`HEROKU Cookie monster ate your posted "token": ${req.body.token}`);
     res.end();
   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`));
