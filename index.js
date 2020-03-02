@@ -47,7 +47,7 @@ express()
     res.end();
   })
   .post('/', (req, res) => {
-    res.cookie('token', req.body.token, { maxAge: 900000, httpOnly: true, sameSite: 'Lax' })
+    res.cookie('token', req.body.token, { maxAge: 900000, httpOnly: true, sameSite: 'None', secure: true })
       .set('Content-Type', 'text/html')
       .redirect('./');
     res.end();
