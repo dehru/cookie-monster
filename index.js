@@ -48,7 +48,7 @@ express()
   })
   .post('/', (req, res) => {
     console.log('POST / body is: ', req.body);
-    res.cookie('token', req.body.token, { maxAge: 900000, httpOnly: true, sameSite: 'Strict', secure: true })
+    res.cookie('token', req.body.token, { maxAge: 900000, httpOnly: true, sameSite: 'None', secure: true })
       .set('Content-Type', 'text/html')
       .redirect('./');
     res.end();
