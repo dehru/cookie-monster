@@ -12,6 +12,10 @@ function getHtml(body) {
 window.addEventListener("message", receiveMessage, false);
 function receiveMessage(event) {
   console.log('message received: ', event);
+  if (event && event.data) {
+    const token = event.data.token;
+    fetch('./', { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: "token=" + token});
+  }
 }
 </script>
 </head>
