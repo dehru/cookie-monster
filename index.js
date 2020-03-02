@@ -36,7 +36,7 @@ express()
     res.end();
   })
   .post('/', (req, res) => {
-    res.cookie('token', req.body.token, { maxAge: 900000, httpOnly: true })
+    res.cookie('token', req.body.token, { maxAge: 900000, httpOnly: true, sameSite: 'Lax' })
       .set('Content-Type', 'text/html')
       .status(200)
       .send(`HEROKU Cookie monster ate your posted "token": ${req.body.token}`);
