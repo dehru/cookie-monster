@@ -15,7 +15,7 @@ function getHtml(body) {
         window.top.postMessage('success', '*');
       }
       function receiveMessage(event) {
-        console.log('message received: ', event.data.token);
+        console.log('in iframe, message received: ', event.data.token);
         if (event && event.data && event.data.token) {
           const token = event.data.token;
           acknowledgeMessage();
