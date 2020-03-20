@@ -12,7 +12,9 @@ function getHtml(body) {
     <script>
       window.addEventListener("message", receiveMessage, false);
       function acknowledgeMessage() {
+        console.log('in ack', window.parent);
         debugger;
+        console.log(window.parent.postMessage);
         window.parent.postMessage('success', '*');
       }
       function receiveMessage(event) {
