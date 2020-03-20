@@ -15,7 +15,7 @@ function getHtml(body) {
         console.log('in ack', window.parent);
         debugger;
         console.log(window.parent.postMessage);
-        window.parent.postMessage('success', '*');
+        window.postMessage('success', '*');
       }
       function receiveMessage(event) {
         console.log('message received: ', event.data);
