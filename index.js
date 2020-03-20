@@ -16,8 +16,8 @@ function getHtml(body) {
       }
       function receiveMessage(event) {
         console.log('message received: ', event.data);
-        if (event && event.data) {
-          const token = event.data;
+        if (event && event.data && event.data.token) {
+          const token = event.data.token;
           acknowledgeMessage();
           fetch('./', { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: "token=" + token})
             .then((response) => { 
