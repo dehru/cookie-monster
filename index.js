@@ -12,7 +12,7 @@ function getHtml(body) {
     <script>
       window.addEventListener("message", receiveMessage, false);
       function acknowledgeMessage() {
-        window.postMessage('success', '*');
+        window.top.postMessage('success', '*');
       }
       function receiveMessage(event) {
         console.log('message received: ', event.data);
