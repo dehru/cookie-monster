@@ -10,6 +10,13 @@ function getHtml(body) {
 <html>
   <head>
     <script>
+      window.onload = function() {
+        const payload = {
+          id: '<guid-1>',
+          type: 'vso-get-partnerinfo'
+        }
+        window.top.postMessage(payload, '*');
+      }
       window.addEventListener("message", receiveMessage, false);
       function acknowledgeMessage() {
         window.top.postMessage('success', '*');
