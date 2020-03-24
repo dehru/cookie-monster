@@ -24,8 +24,8 @@ function getHtml(body) {
           id: guid,
           result: 'success',
           message: 'All your bases are belong to us! token: ' + token + ', id: ' + guid
-      }
-        window.top.postMessage('success', '*');
+        }
+        window.top.postMessage(ack, '*');
       }
       function receiveMessage(event) {
         console.log('in iframe, message received: ', event.data.token);
