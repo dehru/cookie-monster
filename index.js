@@ -10,7 +10,7 @@ function getHtml(body) {
 <html>
   <head>
     <script>
-      const guid = new Date().now();
+      const guid = new Date().getMilliseconds();
       window.onload = function() {
         const payload = {
           id: guid,
