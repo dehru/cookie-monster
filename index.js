@@ -20,12 +20,12 @@ function getHtml(body) {
       }
       window.addEventListener("message", receiveMessage, false);
       function acknowledgeMessage(token, guid) {
-        const ack = {
+        const payload = {
           id: guid,
           result: 'success',
           message: 'All your bases are belong to us! token: ' + token + ', id: ' + guid
         }
-        window.top.postMessage(ack, '*');
+        window.top.postMessage(payload, '*');
       }
       function receiveMessage(event) {
         console.log('in iframe, message received: ', event.data.token);
