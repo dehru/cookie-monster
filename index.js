@@ -14,7 +14,7 @@ function getHtml(body) {
       window.onload = function() {
         const payload = {
           id: guid,
-          type: 'vso-get-partnerinfo'
+          type: 'vso-get-partner-info'
         }
         window.top.postMessage(payload, '*');
       }
