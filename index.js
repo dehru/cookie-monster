@@ -60,12 +60,11 @@ function getRenderedPage(req, res) {
   res.end();
 }
 
-function renderWorkspace(req, res) {ß
+function renderWorkspace(req, res) {
   console.log('RENDERING WORKSPACE');
   res.status(200)
     .set('Content-Type', 'text/html')
     .send('<html><body><h1>Here is your workspace!</h1></body></html');
-
 }
 
 express()
