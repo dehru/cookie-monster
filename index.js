@@ -67,6 +67,14 @@ function renderWorkspace(req, res) {
     .send('<html><body><h1>Here is your workspace!</h1></body></html');
 }
 
+function processPost(req, res) {
+  console.log('POST / body is: ', req.body);
+  res.cookie('token', req.body.cascadeToken, { maxAge: 900000, httpOnly: true, sameSite: 'None', secure: true })
+    .set('Content-Type', 'text/html')
+    .redirect('./');
+  res.end();
+}
+
 express()
   .use(express.static(path.join(__dirname, 'public')))
   .use(bodyParser.urlencoded({ extended: true }))
@@ -74,13 +82,7 @@ express()
   .use(nocache())
   .set('etag', false)
   .get('/', getRenderedPage)
-  .post('/platform-auth', getRenderedPage)
+  .post('/platform-auth', processPost)
   .get('/workspace/*', renderWorkspace)
-  .post('/', (req, res) => {
-    console.log('POST / body is: ', req.body);
-    res.cookie('token', req.body.token, { maxAge: 900000, httpOnly: true, sameSite: 'None', secure: true })
-      .set('Content-Type', 'text/html')
-      .redirect('./');
-    res.end();
-  })
+  .post('/', )
   .listen(PORT, () => console.log(`Listening on ${ PORT }`));
