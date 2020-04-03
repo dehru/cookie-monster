@@ -50,20 +50,23 @@ function getHtml(body) {
 </html>
 `};
 
+function getRenderedPage(req, res) {
+  console.log('GET / cookie monster sees: ', req.cookies);
+  const token = req.cookies.token;
+  res.status(200)
+    .set('Content-Type', 'text/html')
+    .send(getHtml(`HEROKU frame waiting for postMessage,<br />cookie token is: ${token}`));
+  res.end();
+}
+
 express()
   .use(express.static(path.join(__dirname, 'public')))
   .use(bodyParser.urlencoded({ extended: true }))
   .use(cookieParser())
   .use(nocache())
   .set('etag', false)
-  .get('/', (req, res) => {
-    console.log('GET / cookie monster sees: ', req.cookies);
-    const token = req.cookies.token;
-    res.status(200)
-      .set('Content-Type', 'text/html')
-      .send(getHtml(`HEROKU frame waiting for postMessage,<br />cookie token is: ${token}`));
-    res.end();
-  })
+  .get('/', getRenderedPage)
+  .get('/platform-auth', getRenderedPage)
   .post('/', (req, res) => {
     console.log('POST / body is: ', req.body);
     res.cookie('token', req.body.token, { maxAge: 900000, httpOnly: true, sameSite: 'None', secure: true })
