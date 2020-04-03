@@ -60,6 +60,14 @@ function getRenderedPage(req, res) {
   res.end();
 }
 
+function renderWorkspace(req, res) {ß
+  console.log('RENDERING WORKSPACE');
+  res.status(200)
+    .set('Content-Type', 'text/html')
+    .send('<html><body><h1>Here is your workspace!</h1></body></html');
+
+}
+
 express()
   .use(express.static(path.join(__dirname, 'public')))
   .use(bodyParser.urlencoded({ extended: true }))
@@ -68,6 +76,7 @@ express()
   .set('etag', false)
   .get('/', getRenderedPage)
   .get('/platform-auth', getRenderedPage)
+  .get('/workspace/*', renderWorkspace)
   .post('/', (req, res) => {
     console.log('POST / body is: ', req.body);
     res.cookie('token', req.body.token, { maxAge: 900000, httpOnly: true, sameSite: 'None', secure: true })
