@@ -22,6 +22,7 @@ function getHtml(body) {
       function acknowledgeMessage(token, guid) {
         const payload = {
           id: guid,
+          type: 'result',
           result: 'success',
           message: 'All your bases are belong to us! token: ' + token + ', id: ' + guid
         }
