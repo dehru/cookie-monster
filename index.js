@@ -74,7 +74,7 @@ express()
   .use(nocache())
   .set('etag', false)
   .get('/', getRenderedPage)
-  .get('/platform-auth', getRenderedPage)
+  .post('/platform-auth', getRenderedPage)
   .get('/workspace/*', renderWorkspace)
   .post('/', (req, res) => {
     console.log('POST / body is: ', req.body);
