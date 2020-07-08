@@ -38,7 +38,7 @@ function processPost(req, res) {
   const workspace = body.partnerInfo.codespacesId;
   res.cookie('token', req.body.cascadeToken, { maxAge: 900000, httpOnly: true, sameSite: 'None', secure: true })
     .set('Content-Type', 'text/html')
-    .redirect(`./workspace-${workspace}`);
+    .redirect(`./workspace/${workspace}`);
   res.end();
 }
 
