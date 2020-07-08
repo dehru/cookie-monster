@@ -18,6 +18,13 @@ function getHtml(body) {
 </html>
 `};
 
+function getRenderedPage(req, res) {
+  res.status(200)
+    .set('Content-Type', 'text/html')
+    .send(getHtml('Hello World'));
+  res.end();
+}
+
 function renderWorkspace(req, res) {
   console.log('RENDERING WORKSPACE');
   res.status(200)
@@ -42,4 +49,5 @@ express()
   .get('/', getRenderedPage)
   .post('/platform-authentication', processPost)
   .get('/workspace/*', renderWorkspace)
+  .post('/', )
   .listen(PORT, () => console.log(`Listening on ${ PORT }`));
