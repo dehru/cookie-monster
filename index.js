@@ -36,7 +36,7 @@ function processPost(req, res) {
   console.log('POST / body is: ', req.body);
   const partnerInfo = JSON.parse(req.body.partnerInfo);
   console.log('partnerInfo: ', partnerInfo);
-  const workspace = partnerInfo.codespacesId;
+  const workspace = partnerInfo.codespaceId;
   console.log('workspace: ', workspace);
   res.cookie('token', req.body.cascadeToken, { maxAge: 900000, httpOnly: true, sameSite: 'None', secure: true })
     .set('Content-Type', 'text/html')
