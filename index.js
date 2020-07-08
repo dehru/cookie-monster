@@ -34,8 +34,10 @@ function renderWorkspace(req, res) {
 
 function processPost(req, res) {
   console.log('POST / body is: ', req.body);
-  const body = JSON.parse(req.body);
-  const workspace = body.partnerInfo.codespacesId;
+  const partnerInfo = JSON.parse(req.body.partnerInfo);
+  console.log('partnerInfo: ', partnerInfo);
+  const workspace = partnerInfo.codespacesId;
+  console.log('workspace: ', workspace);
   res.cookie('token', req.body.cascadeToken, { maxAge: 900000, httpOnly: true, sameSite: 'None', secure: true })
     .set('Content-Type', 'text/html')
     .redirect(`./workspace/${workspace}`);
