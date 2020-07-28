@@ -53,5 +53,5 @@ express()
   .get('/', getRenderedPage)
   .post('/platform-authentication', processPost)
   .get('/workspace/*', renderWorkspace)
-  .post('/', )
+  .post('/', processPost)
   .listen(PORT, () => console.log(`Listening on ${ PORT }`));
